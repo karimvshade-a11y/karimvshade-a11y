@@ -9,7 +9,26 @@ Based in Tunisia. Open to full-time roles, contract work, and custom builds.
 
 ---
 
-## ⚡ Gary Defeater — my current focus
+## 🎙️ DoVoice — my current focus
+
+**[→ DoVoice](https://github.com/karimvshade-a11y/DoVoice)** · Python · PyTorch · Kokoro-82M · Gradio
+
+Turn text — or a whole book — into spoken audio, entirely on your own machine. No API keys, no cloud, no per-character billing. Once the model is cached it never touches the network again.
+
+**[Download it and double-click it](https://github.com/karimvshade-a11y/DoVoice/releases/latest)** — 708 MB, no Python, no setup, no internet. The model and all 46 voices are inside the download.
+
+- **61 hours of finished audiobook across six books**, including Moby Dick (21.6 h, 143 chapters) and a scanned OCR Sherlock Holmes. Not a demo — the bugs that mattered were all found by real books.
+- **EPUB in, `.m4b` out**, with chapter markers and cover art read from the book's own table of contents. Renders are resumable, so an interrupted twelve-hour job picks up where it stopped.
+- **Every render is planned first.** Chapter count, estimated length and estimated render time are reported *before* any audio is made, and chapters that will fail are named up front. On the Odyssey the estimate landed within 2% of the real 12 hours.
+- **46 voices across 9 languages**, each routed through its own phonemizer — the failure it prevents is silent, not loud: a British voice sent through American rules produces no error, only subtly wrong pronunciation.
+- **Word-level subtitles** built from the model's own phoneme durations, not interpolated from character counts.
+- **OpenAI-compatible API.** Point any app that already pays for OpenAI TTS at `localhost` and change one URL.
+
+Runs at **25× realtime** on a GTX 1650 SUPER — a card from 2019 — and 1.5× on a plain processor, which is why the download works on any Windows PC.
+
+---
+
+## ⚡ Gary Defeater
 
 **[→ defeat-gary](https://github.com/karimvshade-a11y/defeat-gary)** · Python · SQLite · Streamlit
 
@@ -40,12 +59,12 @@ These tools build each other. The demo GIF on Gary Defeater was recorded with Cy
 
 ## How I work
 
-- **Offline by default.** No telemetry, no API keys, no cloud dependency. If a feature needs the internet, it earns it.
+- **Offline by default.** No telemetry, no API keys, no cloud dependency. If a feature needs the internet, it earns it. DoVoice ships its model *inside* the download rather than fetching it on first run, because a tool sold as offline should not need the network to say its first word.
 - **Failures that explain themselves.** Every error says what went wrong and what to do next — never a blank file that pretends to have worked.
-- **Measured, not assumed.** Codec quality decisions in ultimate-converter came from SSIM comparisons, not defaults.
-- **Documented like someone else has to run it.** Every repo has a README that gets a stranger from clone to working in one pass.
+- **Measured, not assumed.** Codec quality decisions in ultimate-converter came from SSIM comparisons, not defaults. Three optimizations were cut from DoVoice on measurement — `torch.compile` gave no gain, `cudnn.benchmark` was actively worse, fp16 broke — because a knob that does nothing is worse than no knob at all.
+- **Documented like someone else has to run it.** Every repo has a README that gets a stranger from clone to working in one pass. Where a limit is untested, it says so.
 
-**Toolbox:** Python · Rust · SQL / SQLite · Streamlit · Tauri · Pandas · FFmpeg & ImageMagick pipelines · Tesseract OCR · Git
+**Toolbox:** Python · Rust · PyTorch · SQL / SQLite · Streamlit · Tauri · Pandas · FFmpeg & ImageMagick pipelines · Tesseract OCR · PyInstaller · Git
 
 ---
 
